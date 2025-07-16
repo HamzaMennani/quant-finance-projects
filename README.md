@@ -6,7 +6,7 @@ These projects reflect the topics I'm exploring through my current Executive Mas
 
 ## Projects in this repository include:
 
-- 📈 **Barrier Option Pricing in Python**  
+-  **Barrier Option Pricing in Python**  
   Monte Carlo simulation for European barrier options with graphical visualization and sensitivity analysis.
 
 - **PnL Attribution Tool (Excel + VBA)**  
