@@ -1,0 +1,48 @@
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+
+# --- Page config ---
+st.set_page_config(page_title="Economic Dashboard", layout="centered")
+st.title("📊 Economic Indicator Dashboard")
+st.write("Visualize key macroeconomic indicators by country.")
+
+# --- Load data ---
+@st.cache_data
+def load_data():
+    gdp = pd.read_csv("gdp_data.csv")  # Columns: Year, Country, GDP
+    inflation = pd.read_csv("inflation_data.csv")  # Columns: Year, Country, Inflation
+    unemployment = pd.read_csv("unemployment_data.csv")  # Columns: Year, Country, Unemployment
+    return gdp, inflation, unemployment
+
+gdp, inflation, unemployment = load_data()
+
+# --- Country selector ---
+all_countries = sorted(set(gdp["Country"]))
+selected_country = st.selectbox("Choose a country", all_countries)
+
+# --- Filter data ---
+gdp_country = gdp[gdp["Country"] == selected_country]
+inflation_country = inflation[inflation["Country"] == selected_country]
+unemployment_country = unemployment[unemployment["Country"] == selected_country]
+
+# --- Plotting ---
+col1, col2 = st.columns(2)
+
+with col1:
+    fig_gdp = px.line(gdp_country, x="Year", y="GDP", title="GDP Over Time")
+    st.plotly_chart(fig_gdp, use_container_width=True)
+
+with col2:
+    fig_inflation = px.line(inflation_country, x="Year", y="Inflation", title="Inflation Rate")
+    st.plotly_chart(fig_inflation, use_container_width=True)
+
+st.markdown("---")
+
+fig_unemp = px.line(unemployment_country, x="Year", y="Unemployment", title="Unemployment Rate")
+st.plotly_chart(fig_unemp, use_container_width=True)
+
+# --- Download data ---
+st.download_button("Download GDP data", gdp_country.to_csv(index=False), "gdp_data.csv")
+st.download_button("Download Inflation data", inflation_country.to_csv(index=False), "inflation_data.csv")
+st.download_button("Download Unemployment data", unemployment_country.to_csv(index=False), "unemployment_data.csv")
