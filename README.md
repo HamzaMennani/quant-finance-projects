@@ -8,8 +8,8 @@ experience in investment banking and financial markets advisory.
 
 | Project | What it does | Tools |
 |---|---|---|
-| [Barrier option pricing](barrier-option-pricing/) | Prices a European down-and-out call by Monte Carlo, validates it against the closed-form price, corrects for daily barrier monitoring and charts price sensitivities | Python, NumPy, SciPy, Matplotlib |
-| [Economic dashboard](economic-dashboard/) | Interactive dashboard of GDP, inflation and unemployment by country, using World Bank data | Python, Streamlit, Plotly, pandas |
+| [Barrier option pricing] | Prices a European down-and-out call by Monte Carlo, validates it against the closed-form price, corrects for daily barrier monitoring and charts price sensitivities | Python, NumPy, SciPy, Matplotlib |
+| [Economic dashboard] | Interactive dashboard of GDP, inflation and unemployment by country, using World Bank data | Python, Streamlit, Plotly, pandas |
 
 ## Roadmap
 
