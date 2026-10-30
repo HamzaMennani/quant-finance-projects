@@ -1,27 +1,37 @@
-# Quantitative Finance Projects
+# Barrier Option Pricing
 
-Personal projects in quantitative finance and capital markets, built alongside my
-Executive Master in Quantitative Finance (Université Paris Dauphine-PSL & ENSAE) and my
-experience in investment banking and financial markets advisory.
+Pricing of a **European down-and-out call** (the option disappears if the underlying
+touches the barrier before maturity).
 
-## Projects
+## Method
 
-| Project | What it does | Tools |
-|---|---|---|
-| [Barrier option pricing] | Prices a European down-and-out call by Monte Carlo, validates it against the closed-form price, corrects for daily barrier monitoring and charts price sensitivities | Python, NumPy, SciPy, Matplotlib |
-| [Economic dashboard] | Interactive dashboard of GDP, inflation and unemployment by country, using World Bank data | Python, Streamlit, Plotly, pandas |
+- **Monte Carlo**: geometric Brownian motion, vectorised with NumPy, daily barrier
+  monitoring, price reported with its 95% confidence interval.
+- **Validation**: closed-form price for a continuously monitored barrier.
+- **Discrete monitoring**: the Broadie-Glasserman-Kou correction shifts the barrier by
+  `exp(-0.5826 · σ · √Δt)` to approximate daily monitoring with the closed form.
+- **Sensitivities**: price as a function of volatility and of the barrier level.
 
-## Roadmap
+## Results (S0 = 100, K = 100, B = 90, T = 1, r = 5%, σ = 20%)
 
-- P&L attribution tool (delta, vega, carry, fees)
-- Stress testing of a bond portfolio (parallel shift, twist, shocks)
+| Method | Price |
+|---|---|
+| Monte Carlo, 100,000 paths, daily monitoring | 8.96 (95% CI 8.87 – 9.06) |
+| Closed form with BGK correction (daily monitoring) | 8.91 |
+| Closed form, continuous monitoring | 8.67 |
+| Vanilla Black-Scholes call | 10.45 |
 
-## Getting started
+The Monte Carlo price matches the corrected closed form within its confidence interval.
+Continuous monitoring gives a lower price, because the barrier can be hit between two
+daily observations. Unlike a vanilla call, the barrier option gains little value when
+volatility rises, because higher volatility also raises the probability of knock-out.
+
+![Sensitivities](sensitivities.png)
+
+## Run
 
 ```bash
-git clone https://github.com/HamzaMennani/quant-finance-projects.git
-cd quant-finance-projects
-pip install -r requirements.txt
+python pricing_barrier_option.py            # prints prices, saves the charts
+python pricing_barrier_option.py --show     # also displays the charts
+python pricing_barrier_option.py --paths 500000
 ```
-
-Each project folder has its own README with instructions and results.
