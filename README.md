@@ -1,23 +1,27 @@
-# quant-finance-projects
+# Quantitative Finance Projects
 
-This repository showcases a set of personal projects and tools developed as part of my learning journey in quantitative finance, financial engineering, and capital markets. 
+Personal projects in quantitative finance and capital markets, built alongside my
+Executive Master in Quantitative Finance (Université Paris Dauphine-PSL & ENSAE) and my
+experience in investment banking and financial markets advisory.
 
-These projects reflect the topics I'm exploring through my current Executive Master in Quantitative Finance (Université Paris Dauphine – ENSAE – ENSAI) and my experience in the financial industry.
+## Projects
 
-## Projects in this repository include:
+| Project | What it does | Tools |
+|---|---|---|
+| [Barrier option pricing](barrier-option-pricing/) | Prices a European down-and-out call by Monte Carlo, validates it against the closed-form price, corrects for daily barrier monitoring and charts price sensitivities | Python, NumPy, SciPy, Matplotlib |
+| [Economic dashboard](economic-dashboard/) | Interactive dashboard of GDP, inflation and unemployment by country, using World Bank data | Python, Streamlit, Plotly, pandas |
 
--  **Barrier Option Pricing in Python**  
-  Monte Carlo simulation for European barrier options with graphical visualization and sensitivity analysis.
+## Roadmap
 
-- **PnL Attribution Tool (Excel + VBA)**  
-  A breakdown of PnL components (Delta, Vega, Carry, Fees) with a clean reporting layout.
+- P&L attribution tool (delta, vega, carry, fees)
+- Stress testing of a bond portfolio (parallel shift, twist, shocks)
 
-- **Stress Testing Scenarios on Bond Portfolio**  
-  Python notebook simulating interest rate shifts on a diversified bond ladder (parallel, twist, shock).
+## Getting started
 
-## Tools & Languages
-- Python, Jupyter Notebooks  
-- Excel, VBA  
-- SQL, Power BI
+```bash
+git clone https://github.com/HamzaMennani/quant-finance-projects.git
+cd quant-finance-projects
+pip install -r requirements.txt
+```
 
-
+Each project folder has its own README with instructions and results.
